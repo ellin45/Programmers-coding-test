@@ -1,10 +1,9 @@
 function solution(n) {
-    var answer = 0;
-    var m =String(n);
-     
-    for(var i=0; i< m.length;i++){
-        answer += parseInt(m[i]);
-    }
+    let answer = 0;
+    let m = String(n);
     
+    for(let i=0; i <m.length; i++){
+        answer += parseInt(m[i])
+    }
     return answer;
 }
