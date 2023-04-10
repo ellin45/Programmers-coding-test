@@ -1,16 +1,12 @@
 function solution(sizes) {
     let arr = sizes.map(size => size[0] > size[1] ? [size[0],size[1]]: [size[1],size[0]]);
-                        
-    const width = [];
-    const height = [];
+
+    let width = [];
+    let length = [];
     
-    for(let i=0; i<arr.length ; i++){
+    for(let i=0; i<arr.length; i++){
         width.push(arr[i][0])
-        height.push(arr[i][1]);
-        
+        length.push(arr[i][1])
     }
-        return Math.max(...width)*Math.max(...height);
-    
+    return Math.max(...width)*Math.max(...length);
 }
-// 배열에서 가장 큰값 구하고
-// 배열에서 두번째로 큰 값 구해서 곱하면 됨
