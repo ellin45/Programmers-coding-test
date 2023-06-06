@@ -1,14 +1,14 @@
 function solution(n) {
     let numbers = n.toString(2);
-    let countOfOneInN = [...numbers].filter((el) => '1' === el).length;
+    let cntone = [...numbers].filter((el) => '1' === el).length;
 
     
     while (true) {
         n++;
         let binaryOfNextNum = n.toString(2);
-        let countOfOneInNextNum = [...binaryOfNextNum].filter((el) => '1' === el).length;
+        let cntNum = [...binaryOfNextNum].filter((el) => '1' === el).length;
         
-        if (countOfOneInN === countOfOneInNextNum) {
+        if (cntone === cntNum) {
             return n;
         }
     }
