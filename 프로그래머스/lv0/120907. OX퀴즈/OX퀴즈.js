@@ -1,15 +1,12 @@
 function solution(quiz) {
-    return quiz.map((item)=>{
-        let [a,calculation,b,_,ans] = item.split(' ');
+    var answer = [];
+    return quiz.map(t => {
+        const [calc, result] = t.split(' = ')
+        const sign = calc.includes('+') ? 1 : -1;
+        const [a, b] = calc.split(sign === 1 ? " + " : " - ");
 
-        if(calculation==='-'){
-            return Number(a) - Number(b) === Number(ans) ? 'O' : 'X';
-        }
-        
-        if(calculation==='+'){
-            return Number(a) + Number(b) === Number(ans) ? 'O' : 'X';
-        }
-    })
+        return +a + (+b * sign) === +result ? "O" : "X"
+    });      
 }
 
 
