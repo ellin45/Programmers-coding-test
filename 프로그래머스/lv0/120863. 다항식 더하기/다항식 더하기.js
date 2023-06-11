@@ -1,38 +1,29 @@
+
+// 계산
+// 1. ' + '을 기준으로 나눠 배열에 담아줍니다. 
+// 2. 1번을 통해 구한 배열을 x로 구성된 친구들끼리 다 더해줍니다.
+// 3. 1번을 통해 구한 배열을 상수끼리 다 더해줍니다.
+
+// 출력
+// 4. x가 1인 경우 '1x'가 아닌 'x'로 바꿔줍니다.
+
+// 5. x가 0이면 상수만 문자열로 바꿔 출력합니다.
+// 5. 상수가 0이면 x만 출력합니다.
+// 6. x와 상수 모두가 존재할 경우 'x + 상수' 형태로 출력합니다.
+
 function solution(polynomial) {
-  // 모든 식은 더하기이기 때문에 " + "를 기준으로 문자열을 배열로 만들어줍니다.
-  // ex) ["3x", "7", "x"]
-  const arr = polynomial.split(" + ");
+    let split = polynomial.split(' + ');
+    
+    let x = split.filter((item)=>isNaN(item)).map((item)=>{
+        if(item==='x') return '1';
+        return item.replace('x','');
+    }).reduce((a,c)=>a+Number(c),0);
+    
+    let num = split.filter((item)=>Number.isInteger(+item)).reduce((a,c)=>a+Number(c),0);
 
-  let xNum = 0;
-  let num = 0;
-
-  // 분리해둔 arr을 forEach() 메서드를 이용해 하나씩 확인한다.
-  arr.forEach((n) => {
-
-    // includes() 메서드를 이용해 학인 중인 요소에 x가 포함되어 있는지 확인한다.
-    if (n.includes("x")) {
-      // x가 포함되어있다면 replace() 메서드를 이용해 x를 제거해주고
-      // 만약 x를 제거하였는데 공백일 경우 "1"을 넣어준다.
-      const strVal = n.replace("x", "") || "1";
-
-      // 구한 값을 정수로 바꾸어 더해준다.
-      xNum += parseInt(strVal, 10);
-    } else {
-
-      // x가 포함되지 않았다면 숫자이므로 정수형으로 바꾸어 더해준다.
-      num += parseInt(n);
-    }
-  });
-
-  let answer = [];
-  // "계수 1은 생략합니다." 제한사항을 참고하여
-  // 구해둔 xNum이 1을 경우 공백으로 아니면 그대로 입력하고 뒤에 x를 붙여준다.
-  if (xNum) answer.push(`${xNum === 1 ? "" : xNum}x`);
-  if (num) answer.push(num);
-
-  // 배열을 join() 메서드를 이용해 +를 넣어 문자열로 만들고 반환한다.
-  return answer.join(" + ");
+    let updateX = (x===1 ? 'x' : x+'x');
+    
+    if(!x) return num.toString()
+    if(!num) return updateX;
+    return updateX +' + ' + num.toString(); 
 }
-
-console.log(solution("3x + 7 + x")); // "4x + 7"
-console.log(solution("x + x + x")); // "3x"
