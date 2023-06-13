@@ -1,12 +1,31 @@
 function solution(sizes) {
-    let arr = sizes.map(size => size[0] > size[1] ? [size[0],size[1]]: [size[1],size[0]]);
-
-    let width = [];
-    let length = [];
+    // 각 명함의 최대 길이를 가로로 놓고, 그 중에서 가장 큰 값을 찾는다.
+    const maxWidth = Math.max(...sizes.map(card => Math.max(...card)));
     
-    for(let i=0; i<arr.length; i++){
-        width.push(arr[i][0])
-        length.push(arr[i][1])
-    }
-    return Math.max(...width)*Math.max(...length);
+    // 각 명함의 최소 길이를 세로로 놓고, 그 중에서 가장 큰 값을 찾는다.
+    const maxHeight = Math.max(...sizes.map(card => Math.min(...card)));
+
+    // 가장 큰 가로 길이와 세로 길이를 곱하여 지갑의 크기를 반환한다.
+    return maxWidth * maxHeight;
 }
+
+    //첫번째 가로길이가 다음 가로길이보다 길다면 첫번째 가로길이를 반환 
+        // x1 > x2 === ? x1 : x2
+    //첫번째 세로길이가 다음 세로길이보다 길다면 두번째 세로길이를 반환
+    // y1 > y2 === ? y2 : y1
+    
+    //정렬 내림차순으로 정렬
+    //가장 큰 지갑의 크기 Math.max()
+    //순회 forEach 하면서 
+    //새로운 배열 만들기
+    //첫번째 가로길이를 반환한것과 두번째 세로길이를 반환한것을 회전
+    // if([x1,y2] === [y2,x1] ? [y2,x1] : [x1,y2]
+    
+   //순회를 하면서 값을 돌면서 조건문을 넣어서 조건문에 맞는게 있다면 조건문에서 나온 값의 x와 y 의값을 곱한다.
+    
+    
+//배열을 첫번째 
+//80*70 가장 긴 가로와 세로길이
+//가장 긴 가로길이와 그 다음으로 긴 세로길이
+//[0]번째 가로길이 [1]번째 세로길이
+//
