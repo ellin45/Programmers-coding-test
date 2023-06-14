@@ -1,4 +1,4 @@
 function solution(a, b) {
-    return new Date(2016, a-1, b).toString().slice(0,3).toUpperCase();
+    let date = new Date(2016,a-1,b).toString(10).slice(0,3).toUpperCase()
+    return date;
 }
-
