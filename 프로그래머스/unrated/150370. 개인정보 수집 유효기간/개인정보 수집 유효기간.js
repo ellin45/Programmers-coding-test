@@ -1,21 +1,21 @@
 function solution(today, terms, privacies) {
     let map = new Map();
     let ans = [];
-    
+
     let [todayYear, todayMonth, todayDay] = today.split('.');
     let todaySum = (+todayYear * 28 * 12) + (+todayMonth * 28) + +todayDay;
-    
+
     terms.forEach((item)=>{
         const [type, month] = item.split(' ');
         map.set(type, +month);
         console.log(type)
     });
-    
+
     privacies.forEach((item,i)=>{
         let [date, type] = item.split(' ');
         let [year, month, day] = date.split('.');
         let privaciesSum = (+year * 28 * 12) + ((+month + map.get(type)) * 28) + +day;
-        
+
 
         if(privaciesSum<= todaySum) ans.push(i+1);
     })
@@ -36,4 +36,6 @@ function solution(today, terms, privacies) {
 //2-1 privacies 가 유효기간을 넘는다면 false값 //map
 //2-2 날짜를 넘지 않는다면 true 값을 넘겨줘서
 //2-3 true값의 idx를 넘겨 받아서
+
+
 
