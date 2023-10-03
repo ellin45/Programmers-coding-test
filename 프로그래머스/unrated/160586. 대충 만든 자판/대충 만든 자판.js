@@ -44,7 +44,7 @@ function solution(keymap, targets) {
 
   return result;
 }
-
+//
 // forEach의 실행원리
 // ["ABACD", "BCEFD"]
 // keymap.forEach((v , i) => {~~~}
