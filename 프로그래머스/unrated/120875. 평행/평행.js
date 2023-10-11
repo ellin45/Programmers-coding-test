@@ -1,7 +1,27 @@
-const solution = ([[x1, y1], [x2, y2], [x3, y3], [x4, y4]]) => {
-    if((y1 - y2) / (x1 - x2) === (y3 - y4) / (x3 - x4)) return 1;
-    if((y1 - y3) / (x1 - x3) === (y2 - y4) / (x2 - x4)) return 1;
-    if((y1 - y4) / (x1 - x4) === (y2 - y3) / (x2 - x3)) return 1;
-    return 0;
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+function solution(dots) {
+    dots.length = 4;
+    let [[a,b],[c,d],[e,f],[g,h]] = dots
+
+    let slope = parseFloat((f-b))/parseFloat((e-a));
+    let slope1 = parseFloat((h-d))/parseFloat((g-c));
+
+
+    return (parseFloat(slope)).toFixed(1) === (parseFloat(slope1)).toFixed(1) ? 1: 0
+
 }
 
