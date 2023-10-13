@@ -1,15 +1,34 @@
 function solution(n, arr1, arr2) {
-    let answer = [];
-    num = arr1.toString(2)
-    for(let i=0; i<n; i++){
-        const strLine = (arr1[i] | arr2[i]).toString(2) // arr1의 배열 or arr2을 배열2진법을 10진법으로 전환
-        const arrLine = strLine.split("") // strLine을 문자열로 split한다.
-        while (arrLine.length < n){ // arrLine의 길이가 n보다 작을때
-            arrLine.unshift("0") // 0을 arrLine 맨앞에 추가
+  let arr1이진수 = [];
+  let arr2이진수 = [];
+
+  arr1.forEach((el) => {
+    let binary = el.toString(2);
+    binary = binary.padStart(n, "0")
+    return arr1이진수.push(binary);
+  });
+  arr2.forEach((el) => {
+    let binary = el.toString(2);
+    binary = binary.padStart(n, "0")
+    return arr2이진수.push(binary);
+  });
+    
+    const combine = combines(n, arr1이진수, arr2이진수);
+    return combine;
+}
+
+function combines(n, arr1이진수, arr2이진수) {
+    let result = [];
+    
+    for (let i = 0; i < n; i++) {
+        let combinedRow = '';
+        console.log(arr1이진수[i])
+        for(let j = 0; j < arr1이진수[i].length; j++) {
+            combinedRow += (arr1이진수[i][j] === '1' || arr2이진수[i][j] === '1') ? '#' : ' ';
         }
-        const decLine = (arrLine.map(i => i === "1" ? "#" : " ")).join("") // i가 문자열 1일때 true면 #, 아니라면 " " 공백으로 변환한다.
-																																						// arrLine을 join한다.
-        answer.push(decLine) //answer에 decLine을 push
+
+        result.push(combinedRow);
     }
-    return answer;
+    
+    return result;
 }
