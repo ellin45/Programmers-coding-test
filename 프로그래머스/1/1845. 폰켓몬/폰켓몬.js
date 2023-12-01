@@ -1,17 +1,8 @@
 function solution(nums) {
     let numLength = nums.length/2;
-    let answer = 0;
-
-    let arr = nums.filter((el,index)=>{
-        return nums.indexOf(el) === index;
-    })
+    let set = new Set(nums);
+    let size = set.size;
+    console.log(size);
+     return numLength < size ? numLength : size;
     
-    if(arr.length > numLength){
-        answer = numLength
-    }else{
-        answer = arr.length
-    }
-    return answer;
 }
-//중복이 됬을때 => 중복값 제거
-
