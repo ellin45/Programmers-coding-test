@@ -9,6 +9,7 @@ function solution(progresses, speeds) {
             // 현재 작업이 이전 작업보다 오래 걸리면 새로운 배포일 설정
             stack.push(remainingDays);
             answer.push(1);
+            console.log(answer,"stack",stack);
         } else {
             // 이전 작업과 함께 배포되어야 함
             answer[answer.length - 1]++;
