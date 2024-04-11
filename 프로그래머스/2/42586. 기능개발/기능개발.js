@@ -1,25 +1,22 @@
 function solution(progresses, speeds) {
+    let days = progresses.map((progress, index) => {
+        return Math.ceil((100 - progress) / speeds[index]);
+    });
+    
     let answer = [];
-    let stack = [];
-
-    for (let i = 0; i < progresses.length; i++) {
-        let remainingDays = Math.ceil((100 - progresses[i]) / speeds[i]);
-
-        if (stack.length === 0 || stack[stack.length - 1] < remainingDays) {
-            // 현재 작업이 이전 작업보다 오래 걸리면 새로운 배포일 설정
-            stack.push(remainingDays);
-            answer.push(1);
-            console.log(answer,"stack",stack);
+    let maxDay = days[0];  // 첫 번째 기능이 배포되는 날
+    let count = 0;
+    
+    for (let i = 0; i < days.length; i++) {
+        if (days[i] <= maxDay) {
+            count++;  // 현재 기능을 현재 배포일에 포함시킴
         } else {
-            // 이전 작업과 함께 배포되어야 함
-            answer[answer.length - 1]++;
+            answer.push(count);  // 이전 배포일에 배포할 기능들의 수를 기록
+            maxDay = days[i];    // 새로운 배포일 설정
+            count = 1;           // 새로운 배포일의 첫 기능
         }
     }
-
+    
+    answer.push(count);  // 마지막에 남은 기능들을 배포
     return answer;
 }
-        
-
-
-
-
